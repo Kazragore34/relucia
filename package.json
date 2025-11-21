@@ -4,8 +4,7 @@
   "description": "Página web de Relucia - Servicios de limpieza profesional en Madrid",
   "scripts": {
     "build": "cd frontend && npm run build",
-    "deploy": "npm run build && node scripts/copy-build-to-root.js",
-    "deploy:local": "npm run build && node scripts/copy-build.js",
+    "deploy": "npm run build && node scripts/copy-build.js",
     "dev": "cd frontend && npm run dev"
   },
   "keywords": ["relucia", "limpieza", "madrid"],
