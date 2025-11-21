@@ -6,7 +6,22 @@ He actualizado el cliente de Supabase para incluir explícitamente los headers `
 
 ## 🔍 Verificaciones Necesarias en Supabase
 
-### 1. Verificar Configuración de API (Settings → API)
+### 1. Configurar URLs en Authentication (Settings → Authentication → URL Configuration)
+
+**IMPORTANTE:** Aunque no es la causa directa del error de API key, debes configurar esto para producción:
+
+1. Ve a **Settings** → **Authentication** → **URL Configuration**
+2. **Site URL**: Cambia de `http://localhost:3000` a `https://relucia.es`
+3. **Redirect URLs**: Agrega estas URLs:
+   - `https://relucia.es`
+   - `https://relucia.es/**`
+   - `https://www.relucia.es`
+   - `https://www.relucia.es/**`
+4. Haz clic en **"Save changes"**
+
+Esto asegura que Supabase reconozca tu dominio en producción.
+
+### 2. Verificar Configuración de API (Settings → API)
 
 1. Ve a tu proyecto en Supabase: https://supabase.com/dashboard
 2. Selecciona tu proyecto `baujlxjxjqhxfqxkvttb`
@@ -15,7 +30,7 @@ He actualizado el cliente de Supabase para incluir explícitamente los headers `
    - **Project URL**: `https://baujlxjxjqhxfqxkvttb.supabase.co`
    - **anon public key**: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` (debe coincidir con la del código)
 
-### 2. Verificar Políticas RLS (Row Level Security)
+### 3. Verificar Políticas RLS (Row Level Security)
 
 Ejecuta este SQL en el **SQL Editor** de Supabase:
 
@@ -40,7 +55,7 @@ GRANT INSERT ON bookings TO anon;
 GRANT INSERT ON bookings TO authenticated;
 ```
 
-### 3. Verificar Permisos de la Tabla
+### 4. Verificar Permisos de la Tabla
 
 Ejecuta este SQL para verificar los permisos:
 
@@ -55,7 +70,7 @@ WHERE table_name = 'bookings';
 
 Debe mostrar que `anon` y `authenticated` tienen permisos de `INSERT`.
 
-### 4. Verificar en el Navegador
+### 5. Verificar en el Navegador
 
 Después de subir los cambios:
 

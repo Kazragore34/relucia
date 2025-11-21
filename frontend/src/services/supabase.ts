@@ -12,18 +12,26 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error(error);
 }
 
-// Crear cliente de Supabase con configuración explícita
-// Asegurar que los headers apikey y Authorization se envíen correctamente
+// Crear cliente de Supabase
+// El cliente de Supabase JS v2 maneja automáticamente los headers apikey y Authorization
+// pero podemos asegurarnos usando fetchOptions
 export const supabase: SupabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
-  global: {
-    headers: {
-      'apikey': supabaseAnonKey,
-      'Authorization': `Bearer ${supabaseAnonKey}`,
-    },
-  },
   auth: {
     persistSession: false,
     autoRefreshToken: false,
+  },
+  global: {
+    fetch: (url, options = {}) => {
+      // Asegurar que los headers apikey y Authorization estén presentes
+      const headers = new Headers(options.headers);
+      headers.set('apikey', supabaseAnonKey);
+      headers.set('Authorization', `Bearer ${supabaseAnonKey}`);
+      
+      return fetch(url, {
+        ...options,
+        headers,
+      });
+    },
   },
 });
 

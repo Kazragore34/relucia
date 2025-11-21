@@ -2,6 +2,7 @@ import { supabase } from './supabase';
 import type { Booking } from '../types';
 
 export async function createBooking(booking: Omit<Booking, 'id' | 'created_at' | 'updated_at' | 'estado'>): Promise<Booking> {
+  // Asegurar que los headers se envíen correctamente
   const { data, error } = await supabase
     .from('bookings')
     .insert([{ ...booking, estado: 'pendiente' }])
