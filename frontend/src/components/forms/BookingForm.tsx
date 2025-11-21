@@ -84,6 +84,16 @@ export function BookingForm() {
     label: service,
   }));
 
+  // Generar opciones de hora (de 8:00 a 20:00 en intervalos de 30 minutos)
+  const timeOptions = [];
+  for (let hour = 8; hour <= 20; hour++) {
+    for (let minute = 0; minute < 60; minute += 30) {
+      const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+      const displayTime = `${hour}:${minute.toString().padStart(2, '0')}`;
+      timeOptions.push({ value: timeString, label: displayTime });
+    }
+  }
+
   if (isSuccess) {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
@@ -104,6 +114,8 @@ export function BookingForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Input
           label="Nombre completo"
+          type="text"
+          autoComplete="name"
           {...register('nombre', { required: 'El nombre es obligatorio' })}
           error={errors.nombre?.message}
           placeholder="Juan Pérez"
@@ -112,6 +124,7 @@ export function BookingForm() {
         <Input
           label="Teléfono"
           type="tel"
+          autoComplete="tel"
           {...register('telefono', {
             required: 'El teléfono es obligatorio',
             validate: validatePhone,
@@ -143,6 +156,7 @@ export function BookingForm() {
         <Input
           label="Fecha del servicio"
           type="date"
+          autoComplete="off"
           {...register('fecha_servicio', {
             required: 'La fecha es obligatoria',
             validate: validateDate,
@@ -151,9 +165,9 @@ export function BookingForm() {
           min={new Date().toISOString().split('T')[0]}
         />
 
-        <Input
+        <Select
           label="Hora del servicio"
-          type="time"
+          options={timeOptions}
           {...register('hora_servicio', { required: 'La hora es obligatoria' })}
           error={errors.hora_servicio?.message}
         />
@@ -161,6 +175,8 @@ export function BookingForm() {
 
       <Input
         label="Dirección"
+        type="text"
+        autoComplete="street-address"
         {...register('direccion', { required: 'La dirección es obligatoria' })}
         error={errors.direccion?.message}
         placeholder="Calle, número, piso, código postal, Madrid"
