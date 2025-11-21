@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Card } from '../ui/Card';
 import { SERVICES } from '../../utils/constants';
 import { Home, Hammer, Sparkles, Briefcase } from 'lucide-react';
@@ -10,6 +11,8 @@ const iconMap: Record<string, any> = {
 };
 
 export function Services() {
+  const navigate = useNavigate();
+
   return (
     <section id="servicios" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -26,7 +29,11 @@ export function Services() {
           {SERVICES.map((service) => {
             const Icon = iconMap[service.icon] || Home;
             return (
-              <Card key={service.id} className="text-center">
+              <Card 
+                key={service.id} 
+                className="text-center cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                onClick={() => navigate('/servicios')}
+              >
                 <div className="flex justify-center mb-4">
                   <div className="p-4 bg-primary-light rounded-full">
                     <Icon className="w-8 h-8 text-primary" />

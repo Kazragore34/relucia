@@ -17,7 +17,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
         <textarea
           ref={ref}
-          className={`textarea ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}
+          className={`textarea text-text ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}
           {...props}
         />
         {error && <p className="mt-1 text-sm text-red-500">{error}</p>}

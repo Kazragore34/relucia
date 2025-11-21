@@ -42,12 +42,11 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-            <Button
-              variant="primary"
-              onClick={() => window.open(WHATSAPP_URL, '_blank')}
-            >
-              Reservar
-            </Button>
+            <Link to="/contacto">
+              <Button variant="primary">
+                Reservar
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}

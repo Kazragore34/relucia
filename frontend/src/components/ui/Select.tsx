@@ -18,7 +18,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         )}
         <select
           ref={ref}
-          className={`select ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}
+          className={`select text-text ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}
           {...props}
         >
           <option value="">Selecciona una opción</option>

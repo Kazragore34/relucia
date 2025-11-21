@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import { Sparkles } from 'lucide-react';
-import { WHATSAPP_URL } from '../../utils/constants';
 
 export function Hero() {
+  const navigate = useNavigate();
+
   return (
     <section className="relative bg-gradient-to-br from-primary-light via-white to-primary-light py-20 md:py-32 overflow-hidden">
       <div className="absolute inset-0 opacity-10">
@@ -33,7 +35,7 @@ export function Hero() {
             <Button
               variant="primary"
               size="lg"
-              onClick={() => window.open(WHATSAPP_URL, '_blank')}
+              onClick={() => navigate('/contacto')}
             >
               Reservar Ahora
             </Button>

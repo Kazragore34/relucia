@@ -73,10 +73,8 @@ export function BookingForm() {
 
       const booking = await createBooking(bookingData);
       
-      // Enviar notificación por WhatsApp
-      const message = formatBookingNotification(booking);
-      openWhatsApp(message);
-
+      // La reserva se guarda en la base de datos
+      // El usuario puede contactar por WhatsApp si necesita algo adicional
       setIsSuccess(true);
       reset();
 
@@ -104,7 +102,7 @@ export function BookingForm() {
           ¡Reserva enviada con éxito!
         </h3>
         <p className="text-green-700">
-          Te contactaremos pronto por WhatsApp para confirmar tu reserva.
+          Tu reserva ha sido enviada correctamente. Te contactaremos pronto para confirmar los detalles.
         </p>
       </div>
     );

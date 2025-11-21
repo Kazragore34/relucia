@@ -17,7 +17,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <input
           ref={ref}
-          className={`input ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}
+          className={`input text-text ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}
           {...props}
         />
         {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
