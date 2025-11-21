@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Textarea } from '../ui/Textarea';
 import { Select } from '../ui/Select';
+import { TimeSelector } from '../ui/TimeSelector';
 import { formatBookingMessage, openWhatsApp } from '../../services/whatsapp';
 import { SERVICE_TYPES } from '../../utils/constants';
 import { CheckCircle } from 'lucide-react';
@@ -27,6 +28,7 @@ export function BookingForm() {
     handleSubmit,
     watch,
     reset,
+    control,
     formState: { errors },
   } = useForm<BookingFormData>();
 
@@ -83,16 +85,6 @@ export function BookingForm() {
     value: service,
     label: service,
   }));
-
-  // Generar opciones de hora (de 8:00 a 20:00 en intervalos de 30 minutos)
-  const timeOptions = [];
-  for (let hour = 8; hour <= 20; hour++) {
-    for (let minute = 0; minute < 60; minute += 30) {
-      const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-      const displayTime = `${hour}:${minute.toString().padStart(2, '0')}`;
-      timeOptions.push({ value: timeString, label: displayTime });
-    }
-  }
 
   if (isSuccess) {
     return (
@@ -152,26 +144,32 @@ export function BookingForm() {
         />
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input
-          label="Fecha del servicio"
-          type="date"
-          autoComplete="off"
-          {...register('fecha_servicio', {
-            required: 'La fecha es obligatoria',
-            validate: validateDate,
-          })}
-          error={errors.fecha_servicio?.message}
-          min={new Date().toISOString().split('T')[0]}
-        />
+      <Input
+        label="Fecha del servicio"
+        type="date"
+        autoComplete="off"
+        {...register('fecha_servicio', {
+          required: 'La fecha es obligatoria',
+          validate: validateDate,
+        })}
+        error={errors.fecha_servicio?.message}
+        min={new Date().toISOString().split('T')[0]}
+      />
 
-        <Select
-          label="Hora del servicio"
-          options={timeOptions}
-          {...register('hora_servicio', { required: 'La hora es obligatoria' })}
-          error={errors.hora_servicio?.message}
-        />
-      </div>
+      <Controller
+        name="hora_servicio"
+        control={control}
+        rules={{ required: 'La hora es obligatoria' }}
+        render={({ field }) => (
+          <TimeSelector
+            label="Hora del servicio"
+            value={field.value}
+            onChange={field.onChange}
+            error={errors.hora_servicio?.message}
+            required
+          />
+        )}
+      />
 
       <Input
         label="Dirección"
