@@ -2,7 +2,7 @@
 node_modules/
 frontend/node_modules/
 
-# Build outputs (NO ignorar public_html/, se sube a GitHub)
+# Build outputs
 frontend/dist/
 
 # Environment variables
@@ -31,6 +31,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # IMPORTANTE: 
-# - public_html/ SÍ se sube a GitHub (contiene los archivos compilados)
-# - Los archivos compilados NO deben estar en la raíz del repo
-# - Solo deben estar en public_html/
+# - Los archivos compilados (index.html, assets/, .htaccess) SÍ se suben a la raíz del repo
+# - Hostinger descargará todo el repo en public_html/, así que los archivos en la raíz
+#   del repo estarán directamente en public_html/ de Hostinger
+# - public_html/ local se mantiene para desarrollo, pero no es necesario subirlo

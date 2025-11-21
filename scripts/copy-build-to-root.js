@@ -1,11 +1,37 @@
 const fs = require('fs');
 const path = require('path');
 
-// Este script copia los archivos del build tanto a public_html/ como a la raíz del repo
-// Para que Hostinger pueda servir los archivos directamente
+// Este script copia los archivos del build a la raíz del repo
+// Hostinger descargará todo el repo en public_html/, así que los archivos en la raíz
+// del repo estarán directamente en public_html/ de Hostinger
 
 const sourceDir = path.join(__dirname, '..', 'frontend', 'dist');
-const publicHtmlDir = path.join(__dirname, '..', 'public_html');
+const rootDir = path.join(__dirname, '..');
+
+// Archivos y carpetas que NO deben eliminarse de la raíz
+const filesToKeep = [
+  '.git',
+  'frontend',
+  'supabase',
+  'scripts',
+  'node_modules',
+  'README.md',
+  'DEPLOYMENT.md',
+  'SUPABASE_SETUP.md',
+  'ESTRUCTURA.md',
+  'ESTRUCTURA_FINAL.md',
+  'HOSTINGER_SETUP.md',
+  'DIAGNOSTICO.md',
+  'SOLUCION_CREDENCIALES.md',
+  'SOLUCION_HOSTINGER.md',
+  'RESUMEN_FIX.md',
+  'package.json',
+  '.gitignore',
+  '.env.example',
+  'deploy.sh',
+  '.hosting-deploy.sh',
+  'public_html' // Mantener public_html/ para desarrollo local
+];
 
 // Función para copiar directorios recursivamente
 function copyRecursiveSync(src, dest) {
@@ -28,22 +54,27 @@ function copyRecursiveSync(src, dest) {
   }
 }
 
-// Función para limpiar directorio (excepto .htaccess)
-function cleanDirectory(dir, keepHtaccess = true) {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
+// Función para limpiar archivos compilados de la raíz (manteniendo archivos importantes)
+function cleanBuildFiles(rootDir) {
+  if (!fs.existsSync(rootDir)) {
     return;
   }
   
-  const files = fs.readdirSync(dir);
+  const files = fs.readdirSync(rootDir);
   files.forEach(file => {
-    if (keepHtaccess && file === '.htaccess') return;
-    const filePath = path.join(dir, file);
+    // Saltar archivos y carpetas importantes
+    if (filesToKeep.includes(file) || file.startsWith('.')) {
+      return;
+    }
+    
+    const filePath = path.join(rootDir, file);
     const stat = fs.statSync(filePath);
-    if (stat.isDirectory()) {
-      fs.rmSync(filePath, { recursive: true, force: true });
-    } else {
+    
+    // Eliminar archivos compilados conocidos
+    if (stat.isFile() && (file === 'index.html' || file === 'vite.svg')) {
       fs.unlinkSync(filePath);
+    } else if (stat.isDirectory() && file === 'assets') {
+      fs.rmSync(filePath, { recursive: true, force: true });
     }
   });
 }
@@ -52,22 +83,43 @@ function cleanDirectory(dir, keepHtaccess = true) {
 const htaccessContent = `<IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  RewriteRule ^index\\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>`;
+  
+  # Permitir acceso a archivos estáticos
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  
+  # Redirigir todo lo demás a index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
 
-console.log('📦 Copiando archivos del build a public_html/...');
+# Configuración de seguridad
+<FilesMatch "\\.(htaccess|htpasswd|ini|log|sh|sql)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
 
-// Copiar a public_html/ (Hostinger descarga el repo completo, pero solo sirve public_html/)
-cleanDirectory(publicHtmlDir);
-copyRecursiveSync(sourceDir, publicHtmlDir);
-fs.writeFileSync(path.join(publicHtmlDir, '.htaccess'), htaccessContent);
+# Permitir acceso a archivos estáticos
+<FilesMatch "\\.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$">
+  Order Allow,Deny
+  Allow from all
+</FilesMatch>`;
+
+console.log('📦 Copiando archivos del build a la raíz del repo...');
+
+// Limpiar archivos compilados anteriores de la raíz
+cleanBuildFiles(rootDir);
+
+// Copiar archivos del build a la raíz del repo
+copyRecursiveSync(sourceDir, rootDir);
+
+// Crear/actualizar .htaccess en la raíz
+fs.writeFileSync(path.join(rootDir, '.htaccess'), htaccessContent);
 
 console.log('✅ Deploy completado!');
-console.log('📤 Archivos listos en public_html/');
+console.log('📤 Archivos compilados listos en la raíz del repo');
 console.log('');
-console.log('💡 Hostinger descargará todo el repo en public_html/,');
-console.log('   pero solo servirá los archivos de public_html/ (index.html, assets/, etc.)');
+console.log('💡 Cuando Hostinger descargue el repo en public_html/,');
+console.log('   los archivos de la raíz (index.html, assets/, .htaccess)');
+console.log('   estarán directamente en public_html/ y se servirán correctamente.');
 
