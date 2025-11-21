@@ -25,7 +25,7 @@ export const supabase: SupabaseClient = createClient(supabaseUrl, supabaseAnonKe
       // Asegurar que los headers apikey y Authorization estén presentes
       const headers = new Headers(options.headers);
       headers.set('apikey', supabaseAnonKey);
-      headers.set('Authorization', `Bearer ${supabaseAnonKey}`);
+      headers.set('Authorization', supabaseAnonKey);
       
       return fetch(url, {
         ...options,
