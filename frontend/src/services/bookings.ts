@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import { Booking } from '../types';
+import type { Booking } from '../types';
 
 export async function createBooking(booking: Omit<Booking, 'id' | 'created_at' | 'updated_at' | 'estado'>): Promise<Booking> {
   const { data, error } = await supabase

@@ -1,5 +1,5 @@
-import { WHATSAPP_URL, WHATSAPP_NUMBER } from '../utils/constants';
-import { Booking } from '../types';
+import { WHATSAPP_URL } from '../utils/constants';
+import type { Booking } from '../types';
 
 export function openWhatsApp(message?: string): void {
   const url = message 

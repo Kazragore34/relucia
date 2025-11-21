@@ -1,119 +1,134 @@
 # Guía de Deployment para relucia.es
 
-## Pasos para subir a public_html
+## ✅ Configuración Automática con GitHub y Hostinger
 
-### 1. Ejecutar la migración SQL en Supabase
+Este proyecto está configurado para que Hostinger descargue automáticamente los archivos desde GitHub.
 
-**IMPORTANTE**: Antes de hacer el build, asegúrate de ejecutar la migración SQL:
+## 🚀 Proceso de Deploy
 
-1. Ve a tu proyecto en Supabase: https://supabase.com/dashboard/project/baujlxjxjqhxfqxkvttb
-2. Ve a **SQL Editor** (en el menú lateral)
-3. Haz clic en **New Query**
-4. Abre el archivo `supabase/migrations/001_create_bookings_table.sql`
-5. Copia TODO el contenido del archivo
-6. Pega en el editor SQL de Supabase
-7. Haz clic en **Run** (o presiona Ctrl+Enter)
+### 1. Ejecutar Build y Deploy
 
-Esto creará la tabla `bookings` y todas las políticas necesarias.
-
-### 2. Crear usuario administrador
-
-1. En Supabase, ve a **Authentication** > **Users**
-2. Haz clic en **Add user** > **Create new user**
-3. Ingresa tu email y contraseña
-4. Guarda estas credenciales para acceder al panel de administración
-
-### 3. Build del proyecto
-
-Ejecuta el siguiente comando para generar los archivos de producción:
+Desde la raíz del proyecto, ejecuta:
 
 ```bash
-cd frontend
-npm install
-npm run build
+npm run deploy
 ```
 
-Esto creará una carpeta `dist/` con todos los archivos optimizados.
+O manualmente:
 
-### 4. Subir a public_html
+```bash
+# 1. Hacer build del frontend
+npm run build
 
-1. **Conecta por FTP/SFTP** a tu servidor de relucia.es
-2. **Navega a la carpeta `public_html`** (o la carpeta raíz de tu dominio)
-3. **Sube TODOS los archivos** de la carpeta `frontend/dist/` a `public_html/`
+# 2. Copiar archivos a public_html (automático con npm run deploy)
+node scripts/copy-build.js
+```
 
-**Estructura esperada en public_html:**
+Este comando:
+- ✅ Ejecuta el build del frontend
+- ✅ Copia los archivos de `frontend/dist/` a `public_html/`
+- ✅ Asegura que el archivo `.htaccess` esté presente
+
+### 2. Subir a GitHub
+
+```bash
+git add .
+git commit -m "Deploy: Actualización de la página web"
+git push
+```
+
+### 3. Hostinger descarga automáticamente
+
+Hostinger descargará automáticamente los cambios desde GitHub y los publicará en `www.relucia.es`
+
+## 📋 Checklist Pre-Deploy
+
+- [x] ✅ Migración SQL ejecutada en Supabase
+- [x] ✅ Usuario administrador creado en Supabase
+- [x] ✅ Credenciales de Supabase configuradas en `.env`
+- [x] ✅ Build ejecutado correctamente
+- [x] ✅ Archivos copiados a `public_html/`
+- [x] ✅ Archivo `.htaccess` presente
+
+## 📁 Estructura de Archivos en public_html
+
+Después del deploy, `public_html/` debe contener:
+
 ```
 public_html/
-├── index.html
-├── assets/
-│   ├── index-[hash].js
-│   ├── index-[hash].css
-│   └── ...
-└── vite.svg (o favicon)
+├── .htaccess          # Configuración de Apache para SPA routing
+├── index.html         # Página principal
+├── vite.svg           # Favicon
+└── assets/
+    ├── index-*.js     # JavaScript bundle
+    └── index-*.css    # CSS bundle
 ```
 
-### 5. Configurar el servidor web
+## 🔧 Configuración de Supabase
 
-Asegúrate de que tu servidor web esté configurado para:
+### Migración SQL (Ya completada ✅)
 
-1. **Servir index.html para todas las rutas** (SPA routing)
-   - Si usas Apache, crea un archivo `.htaccess` en `public_html/`
-   - Si usas Nginx, configura las rewrites
+La migración SQL ya fue ejecutada. Si necesitas verificar:
 
-2. **Archivo .htaccess para Apache** (crear en public_html):
+1. Ve a: https://supabase.com/dashboard/project/baujlxjxjqhxfqxkvttb
+2. SQL Editor → Verifica que la tabla `bookings` existe
+3. Authentication → Verifica que tu usuario administrador existe
 
-```apache
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>
-```
+### Variables de Entorno
 
-### 6. Verificar que funciona
+Las credenciales de Supabase están incluidas en el build:
+- URL: `https://baujlxjxjqhxfqxkvttb.supabase.co`
+- Anon Key: Configurada en el código
 
-1. Visita `https://www.relucia.es`
-2. Prueba el formulario de reservas
-3. Accede al panel de administración: `https://www.relucia.es/admin/login`
-4. Verifica que las reservas se guarden en Supabase
+## 🧪 Verificación Post-Deploy
 
-## Variables de entorno
+Después de que Hostinger descargue los archivos:
 
-Las credenciales de Supabase ya están configuradas en el código (se incluyen en el build).
-Si necesitas cambiarlas en el futuro, edita `frontend/.env` y vuelve a hacer el build.
+1. **Visita la página principal:**
+   - https://www.relucia.es
+   - Debe cargar correctamente
 
-## Actualizaciones futuras
+2. **Prueba el formulario de reservas:**
+   - Ve a https://www.relucia.es/contacto
+   - Completa el formulario
+   - Verifica que se guarde en Supabase
+
+3. **Accede al panel de administración:**
+   - Ve a https://www.relucia.es/admin/login
+   - Inicia sesión con tus credenciales
+   - Verifica que puedas ver las reservas
+
+4. **Verifica las rutas:**
+   - https://www.relucia.es/servicios
+   - https://www.relucia.es/contacto
+   - Todas deben funcionar correctamente (gracias al `.htaccess`)
+
+## 🔄 Actualizaciones Futuras
 
 Para actualizar la página:
 
 1. Haz los cambios en el código
-2. Ejecuta `npm run build` en la carpeta `frontend`
-3. Sube los nuevos archivos de `frontend/dist/` a `public_html/`
-4. Reemplaza los archivos antiguos
+2. Ejecuta `npm run deploy`
+3. Haz commit y push a GitHub
+4. Hostinger descargará automáticamente los cambios
 
-## Notas importantes
-
-- ✅ Las credenciales de Supabase están incluidas en el build
-- ✅ El formulario de reservas funciona sin base de datos local
-- ✅ El panel de administración requiere autenticación en Supabase
-- ✅ Las notificaciones de WhatsApp se envían automáticamente
-- ⚠️ Asegúrate de ejecutar la migración SQL antes del primer uso
-
-## Solución de problemas
+## ⚠️ Solución de Problemas
 
 ### Error 404 en rutas
-- Verifica que el `.htaccess` esté configurado correctamente
+- Verifica que el archivo `.htaccess` esté en `public_html/`
 - Asegúrate de que mod_rewrite esté habilitado en Apache
 
 ### Las reservas no se guardan
 - Verifica que la migración SQL se haya ejecutado
 - Revisa la consola del navegador para errores
-- Verifica las credenciales de Supabase en el build
+- Verifica las credenciales de Supabase
 
 ### No puedo acceder al panel de administración
 - Verifica que hayas creado un usuario en Supabase
 - Revisa que las políticas RLS estén configuradas correctamente
 
+## 📞 Información de Contacto
+
+- WhatsApp: +34 647 122 461
+- Web: www.relucia.es
+- Supabase: https://supabase.com/dashboard/project/baujlxjxjqhxfqxkvttb

@@ -1,4 +1,4 @@
-import { Service } from '../types';
+import type { Service } from '../types';
 
 export const WHATSAPP_NUMBER = '+34647122461';
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER.replace(/[^0-9]/g, '')}`;
