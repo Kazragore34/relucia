@@ -1,5 +1,4 @@
 import { WHATSAPP_URL } from '../utils/constants';
-import type { Booking } from '../types';
 
 export function openWhatsApp(message?: string): void {
   const url = message 
@@ -8,21 +7,35 @@ export function openWhatsApp(message?: string): void {
   window.open(url, '_blank');
 }
 
-export function formatBookingNotification(booking: Booking): string {
-  const servicio = booking.tipo_servicio === 'Otros' 
-    ? booking.tipo_servicio_otro || 'Otros'
-    : booking.tipo_servicio;
-  
-  return `Nueva reserva de ${booking.nombre}
+interface BookingData {
+  nombre: string;
+  telefono: string;
+  tipo_servicio: string;
+  fecha_servicio: string;
+  hora_servicio: string;
+  direccion: string;
+  descripcion?: string;
+}
 
-📋 Servicio: ${servicio}
-📅 Fecha: ${new Date(booking.fecha_servicio).toLocaleDateString('es-ES')}
+export function formatBookingMessage(booking: BookingData): string {
+  const fecha = new Date(booking.fecha_servicio).toLocaleDateString('es-ES', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  
+  return `Hola, me gustaría hacer una reserva:
+
+👤 Nombre: ${booking.nombre}
+📞 Teléfono: ${booking.telefono}
+📋 Servicio: ${booking.tipo_servicio}
+📅 Fecha: ${fecha}
 🕐 Hora: ${booking.hora_servicio}
 📍 Dirección: ${booking.direccion}
-📞 Teléfono: ${booking.telefono}
 ${booking.descripcion ? `📝 Descripción: ${booking.descripcion}` : ''}
 
-Ver detalles en el panel de administración.`;
+¿Podrían confirmarme la disponibilidad?`;
 }
 
 export function formatContactMessage(nombre: string, telefono: string, mensaje: string): string {

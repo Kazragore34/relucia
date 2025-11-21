@@ -4,10 +4,8 @@ import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Textarea } from '../ui/Textarea';
 import { Select } from '../ui/Select';
-import { createBooking } from '../../services/bookings';
-import { formatBookingNotification, openWhatsApp } from '../../services/whatsapp';
+import { formatBookingMessage, openWhatsApp } from '../../services/whatsapp';
 import { SERVICE_TYPES } from '../../utils/constants';
-import { Booking } from '../../types';
 import { CheckCircle } from 'lucide-react';
 
 interface BookingFormData {
@@ -22,9 +20,7 @@ interface BookingFormData {
 }
 
 export function BookingForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const {
     register,
@@ -55,38 +51,32 @@ export function BookingForm() {
     return true;
   };
 
-  const onSubmit = async (data: BookingFormData) => {
-    setIsSubmitting(true);
-    setError(null);
+  const onSubmit = (data: BookingFormData) => {
+    // Formatear el mensaje para WhatsApp
+    const servicio = data.tipo_servicio === 'Otros' 
+      ? data.tipo_servicio_otro || 'Otros'
+      : data.tipo_servicio;
+    
+    const message = formatBookingMessage({
+      nombre: data.nombre,
+      telefono: data.telefono,
+      tipo_servicio: servicio,
+      fecha_servicio: data.fecha_servicio,
+      hora_servicio: data.hora_servicio,
+      direccion: data.direccion,
+      descripcion: data.descripcion,
+    });
 
-    try {
-      const bookingData: Omit<Booking, 'id' | 'created_at' | 'updated_at' | 'estado'> = {
-        nombre: data.nombre,
-        telefono: data.telefono,
-        tipo_servicio: data.tipo_servicio,
-        tipo_servicio_otro: data.tipo_servicio === 'Otros' ? data.tipo_servicio_otro : undefined,
-        fecha_servicio: data.fecha_servicio,
-        hora_servicio: data.hora_servicio,
-        direccion: data.direccion,
-        descripcion: data.descripcion || undefined,
-      };
+    // Abrir WhatsApp con el mensaje
+    openWhatsApp(message);
+    
+    setIsSuccess(true);
+    reset();
 
-      const booking = await createBooking(bookingData);
-      
-      // La reserva se guarda en la base de datos
-      // El usuario puede contactar por WhatsApp si necesita algo adicional
-      setIsSuccess(true);
-      reset();
-
-      // Ocultar mensaje de éxito después de 5 segundos
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 5000);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error al enviar la reserva. Por favor, intenta de nuevo.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Ocultar mensaje de éxito después de 5 segundos
+    setTimeout(() => {
+      setIsSuccess(false);
+    }, 5000);
   };
 
   const serviceOptions = SERVICE_TYPES.map((service) => ({
@@ -102,7 +92,7 @@ export function BookingForm() {
           ¡Reserva enviada con éxito!
         </h3>
         <p className="text-green-700">
-          Tu reserva ha sido enviada correctamente. Te contactaremos pronto para confirmar los detalles.
+          Se abrirá WhatsApp con tu reserva. Si no se abrió, haz clic en el botón de WhatsApp.
         </p>
       </div>
     );
@@ -110,11 +100,6 @@ export function BookingForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
-          {error}
-        </div>
-      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Input
@@ -189,8 +174,8 @@ export function BookingForm() {
         placeholder="Añade cualquier detalle adicional sobre el servicio que necesitas..."
       />
 
-      <Button type="submit" variant="primary" isLoading={isSubmitting} className="w-full">
-        Enviar Reserva
+      <Button type="submit" variant="primary" className="w-full">
+        Enviar Reserva por WhatsApp
       </Button>
     </form>
   );
