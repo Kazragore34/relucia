@@ -9,7 +9,18 @@ export async function createBooking(booking: Omit<Booking, 'id' | 'created_at' |
     .single();
 
   if (error) {
-    throw new Error(error.message);
+    console.error('Error creating booking:', error);
+    console.error('Error details:', {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw new Error(error.message || 'Error al crear la reserva');
+  }
+
+  if (!data) {
+    throw new Error('No se recibieron datos al crear la reserva');
   }
 
   return data;

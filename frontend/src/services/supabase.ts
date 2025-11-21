@@ -13,20 +13,17 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 // Crear cliente de Supabase con configuración explícita
-// Esto asegura que la API key se envíe correctamente en todas las peticiones
+// Asegurar que los headers apikey y Authorization se envíen correctamente
 export const supabase: SupabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
-  db: {
-    schema: 'public',
+  global: {
+    headers: {
+      'apikey': supabaseAnonKey,
+      'Authorization': `Bearer ${supabaseAnonKey}`,
+    },
   },
   auth: {
     persistSession: false,
     autoRefreshToken: false,
-    detectSessionInUrl: false,
-  },
-  global: {
-    headers: {
-      'apikey': supabaseAnonKey,
-    },
   },
 });
 
