@@ -71,9 +71,12 @@ function cleanBuildFiles(rootDir) {
     const filePath = path.join(rootDir, file);
     const stat = fs.statSync(filePath);
     
-    // Eliminar archivos compilados conocidos (pero mantener sitemap.xml y robots.txt)
+    // Eliminar archivos compilados conocidos (pero mantener sitemap.xml, robots.txt y archivos de verificación)
     if (stat.isFile() && (file === 'index.html' || file === 'vite.svg')) {
       fs.unlinkSync(filePath);
+    } else if (stat.isFile() && file.startsWith('google') && file.endsWith('.html')) {
+      // Mantener archivos de verificación de Google Search Console
+      return;
     } else if (stat.isDirectory() && file === 'assets') {
       fs.rmSync(filePath, { recursive: true, force: true });
     }
