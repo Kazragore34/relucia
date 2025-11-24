@@ -8,9 +8,9 @@ export function Contact() {
   return (
     <>
       <SEO
-        title="Reserva tu Servicio de Limpieza en Madrid - Relucia | Contacto y Reservas"
-        description="Reserva tu servicio de limpieza profesional en Madrid. Formulario rápido y fácil. WhatsApp: +34 647 122 461. Cobertura en todo Madrid. Horario: Lunes a Domingo 8:00-20:00."
-        keywords="reservar limpieza Madrid, contacto limpieza Madrid, WhatsApp limpieza Madrid, reserva limpieza profesional Madrid, formulario limpieza Madrid"
+        title="Reserva Limpieza Madrid y Aranjuez - Relucia | Contacto y Reservas"
+        description="Reserva tu servicio de limpieza profesional en Madrid y Aranjuez. Formulario rápido y fácil. WhatsApp: +34 647 122 461. Cobertura en Madrid, Aranjuez y toda la Comunidad de Madrid. Horario: Lunes a Domingo 8:00-20:00."
+        keywords="reservar limpieza Madrid, reservar limpieza Aranjuez, contacto limpieza Madrid, WhatsApp limpieza Madrid, reserva limpieza profesional Madrid, formulario limpieza Madrid, limpieza por horas Madrid"
         canonical="https://www.relucia.es/contacto"
       />
       <main className="py-20">

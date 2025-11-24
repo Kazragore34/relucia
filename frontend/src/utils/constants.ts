@@ -44,7 +44,7 @@ export const SERVICE_TYPES = [
   'Otros',
 ];
 
-export const COVERAGE_AREA = 'Madrid y alrededores';
+export const COVERAGE_AREA = 'Madrid, Aranjuez y toda la Comunidad de Madrid';
 
 export const COMPANY_NAME = 'Relucia';
 export const COMPANY_TAGLINE = 'Tu hogar reluciente en Madrid';

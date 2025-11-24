@@ -6,7 +6,7 @@ const stats = [
     icon: Users,
     number: '500+',
     label: 'Clientes Satisfechos',
-    description: 'Más de 500 clientes confían en nuestros servicios de limpieza en Madrid',
+    description: 'Más de 500 clientes confían en nuestros servicios de limpieza en Madrid y Aranjuez',
   },
   {
     icon: Award,
@@ -37,8 +37,9 @@ export function AboutSection() {
             ¿Por qué Confiar en Relucia?
           </h2>
           <p className="text-lg text-text-light max-w-2xl mx-auto">
-            Somos una empresa de limpieza profesional en Madrid con años de experiencia 
-            y cientos de clientes satisfechos. Nuestro compromiso es dejar tu espacio reluciente.
+            Somos una empresa de limpieza profesional en Madrid y Aranjuez con años de experiencia 
+            y cientos de clientes satisfechos. Especialistas en limpieza por horas, limpieza de casas y limpieza de obras. 
+            Nuestro compromiso es dejar tu espacio reluciente.
           </p>
         </div>
 
@@ -68,17 +69,18 @@ export function AboutSection() {
               </h3>
               <p className="text-text-light mb-4">
                 En Relucia, nos especializamos en ofrecer servicios de limpieza profesional 
-                de la más alta calidad en Madrid. Nuestro equipo de profesionales certificados 
+                de la más alta calidad en Madrid y Aranjuez. Nuestro equipo de profesionales certificados 
                 está comprometido con la excelencia y la satisfacción del cliente.
               </p>
               <p className="text-text-light mb-4">
-                Ofrecemos flexibilidad total con nuestro sistema de pago por horas, lo que te 
+                Ofrecemos flexibilidad total con nuestro sistema de limpieza por horas, lo que te 
                 permite contratar exactamente el servicio que necesitas, cuando lo necesitas. 
+                Especialistas en limpieza de casas, limpieza de obras y limpieza post-obra. 
                 Todos nuestros servicios incluyen materiales de limpieza profesionales de primera calidad.
               </p>
               <p className="text-text-light">
-                Llegamos a toda la Comunidad de Madrid, sin límites de distancia. Ya sea que 
-                necesites una limpieza de casa, limpieza post-obra, limpieza profunda o limpieza 
+                Llegamos a Madrid, Aranjuez y toda la Comunidad de Madrid, sin límites de distancia. Ya sea que 
+                necesites una limpieza de casa, limpieza de obras, limpieza post-obra, limpieza profunda o limpieza 
                 de oficinas, estamos aquí para ayudarte a mantener tu espacio reluciente.
               </p>
             </div>

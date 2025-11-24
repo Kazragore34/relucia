@@ -21,8 +21,8 @@ export function Services() {
             Nuestros Servicios
           </h2>
           <p className="text-lg text-text-light max-w-2xl mx-auto">
-            Ofrecemos servicios de limpieza profesionales en Madrid adaptados a tus necesidades. 
-            Limpieza de casas, post-obra, oficinas y más. Profesionales certificados con materiales incluidos.
+            Ofrecemos servicios de limpieza profesionales en Madrid y Aranjuez adaptados a tus necesidades. 
+            Limpieza de casas, limpieza de obras, limpieza post-obra, oficinas y más. Limpieza por horas con profesionales certificados y materiales incluidos.
           </p>
         </div>
 

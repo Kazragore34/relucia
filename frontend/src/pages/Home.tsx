@@ -10,9 +10,9 @@ export function Home() {
   return (
     <>
       <SEO
-        title="Relucia - Servicios de Limpieza Profesional en Madrid | Limpieza por Horas"
-        description="Relucia ofrece servicios profesionales de limpieza por horas en Madrid. Limpieza de casas, post-obra, oficinas y más. Llegamos a todo Madrid. Profesionales certificados, materiales incluidos. Reserva ahora por WhatsApp."
-        keywords="limpieza Madrid, limpieza por horas Madrid, limpieza casas Madrid, limpieza post obra Madrid, servicios limpieza profesional Madrid, empresa limpieza Madrid, limpieza hogar Madrid, limpieza oficinas Madrid"
+        title="Relucia - Limpieza Madrid y Aranjuez | Limpieza por Horas | Limpieza de Casas y Obras"
+        description="Relucia ofrece servicios profesionales de limpieza por horas en Madrid y Aranjuez. Limpieza de casas, limpieza post-obra, limpieza de obras, oficinas y más. Llegamos a toda la Comunidad de Madrid. Profesionales certificados, materiales incluidos. Reserva ahora por WhatsApp."
+        keywords="limpieza Madrid, limpieza Aranjuez, limpieza por horas, limpieza por horas Madrid, limpieza de casas, limpieza de casas Madrid, limpieza obras, limpieza post obra Madrid, limpieza post obra Aranjuez, servicios limpieza profesional Madrid, empresa limpieza Madrid, limpieza hogar Madrid, limpieza oficinas Madrid, limpieza Comunidad Madrid"
         canonical="https://www.relucia.es/"
       />
       <main>

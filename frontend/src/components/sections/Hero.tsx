@@ -19,17 +19,17 @@ export function Hero() {
           </div>
           
           <h1 className="text-4xl md:text-6xl font-heading font-bold text-text mb-6">
-            Servicios de{' '}
+            Limpieza{' '}
             <span className="bg-gradient-to-r from-primary to-accent-gold bg-clip-text text-transparent">
-              Limpieza Profesional
+              Madrid y Aranjuez
             </span>{' '}
-            en Madrid
+            por Horas
           </h1>
           
           <p className="text-xl md:text-2xl text-text-light mb-8">
-            Servicios profesionales de limpieza por horas en Madrid. 
-            Especialistas en limpieza de casas, post-obra y oficinas. 
-            Llegamos a todo Madrid para dejar tu espacio impecable y reluciente.
+            Servicios profesionales de limpieza por horas en Madrid y Aranjuez. 
+            Especialistas en limpieza de casas, limpieza de obras, limpieza post-obra y oficinas. 
+            Llegamos a toda la Comunidad de Madrid para dejar tu espacio impecable y reluciente.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

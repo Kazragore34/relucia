@@ -14,8 +14,8 @@ const features = [
   },
   {
     icon: MapPin,
-    title: 'Cobertura Total Madrid',
-    description: 'Llegamos a todos los rincones de Madrid y alrededores. Sin límites de distancia.',
+    title: 'Cobertura Madrid y Aranjuez',
+    description: 'Llegamos a Madrid, Aranjuez y toda la Comunidad de Madrid. Sin límites de distancia.',
   },
   {
     icon: Star,
@@ -33,8 +33,8 @@ export function WhyChooseUs() {
             ¿Por qué elegir Relucia?
           </h2>
           <p className="text-lg text-text-light max-w-2xl mx-auto">
-            Somos más que un servicio de limpieza en Madrid. Somos tu aliado para mantener tu espacio reluciente. 
-            Profesionales certificados, materiales incluidos y resultados garantizados.
+            Somos más que un servicio de limpieza en Madrid y Aranjuez. Somos tu aliado para mantener tu espacio reluciente. 
+            Limpieza por horas, limpieza de casas, limpieza de obras. Profesionales certificados, materiales incluidos y resultados garantizados.
           </p>
         </div>
 
