@@ -2,6 +2,7 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { SERVICES, WHATSAPP_URL } from '../utils/constants';
 import { Home, Hammer, Sparkles, Briefcase, CheckCircle } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const iconMap: Record<string, any> = {
   Home,
@@ -12,15 +13,24 @@ const iconMap: Record<string, any> = {
 
 export function ServicesPage() {
   return (
-    <main className="py-20">
+    <>
+      <SEO
+        title="Servicios de Limpieza en Madrid - Relucia | Limpieza Casa, Post-Obra y Más"
+        description="Descubre todos nuestros servicios de limpieza profesional en Madrid: limpieza de casas, post-obra, limpieza profunda y oficinas. Precios desde 15€/hora. Materiales incluidos. Profesionales certificados."
+        keywords="servicios limpieza Madrid, limpieza casa Madrid, limpieza post obra Madrid, limpieza profunda Madrid, limpieza oficinas Madrid, precios limpieza Madrid, empresa limpieza profesional Madrid"
+        canonical="https://www.relucia.es/servicios"
+      />
+      <main className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-text mb-4">
             Nuestros Servicios de Limpieza
           </h1>
           <p className="text-lg text-text-light max-w-3xl mx-auto">
-            Ofrecemos servicios profesionales de limpieza por horas adaptados a tus necesidades. 
-            Desde limpieza de hogares hasta limpieza post-obra, estamos aquí para ayudarte.
+            Ofrecemos servicios profesionales de limpieza por horas en Madrid adaptados a tus necesidades. 
+            Desde limpieza de hogares hasta limpieza post-obra, estamos aquí para ayudarte. 
+            Todos nuestros servicios incluyen materiales de limpieza profesionales y están realizados por 
+            personal certificado y experimentado. Llegamos a toda la Comunidad de Madrid.
           </p>
         </div>
 
@@ -81,6 +91,7 @@ export function ServicesPage() {
         </div>
       </div>
     </main>
+    </>
   );
 }
 

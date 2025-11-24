@@ -19,16 +19,17 @@ export function Hero() {
           </div>
           
           <h1 className="text-4xl md:text-6xl font-heading font-bold text-text mb-6">
-            Tu hogar{' '}
+            Servicios de{' '}
             <span className="bg-gradient-to-r from-primary to-accent-gold bg-clip-text text-transparent">
-              reluciente
+              Limpieza Profesional
             </span>{' '}
             en Madrid
           </h1>
           
           <p className="text-xl md:text-2xl text-text-light mb-8">
-            Servicios profesionales de limpieza por horas. 
-            Llegamos a todo Madrid para dejar tu espacio impecable.
+            Servicios profesionales de limpieza por horas en Madrid. 
+            Especialistas en limpieza de casas, post-obra y oficinas. 
+            Llegamos a todo Madrid para dejar tu espacio impecable y reluciente.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

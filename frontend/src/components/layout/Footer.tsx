@@ -11,8 +11,8 @@ export function Footer() {
           <div>
             <h3 className="text-2xl font-heading font-bold mb-4">Relucia</h3>
             <p className="text-primary-light mb-4">
-              Tu hogar reluciente en Madrid. Servicios de limpieza profesionales 
-              por horas para casas, obras y más.
+              Tu hogar reluciente en Madrid. Servicios profesionales de limpieza por horas 
+              para casas, post-obra, oficinas y más. Profesionales certificados con materiales incluidos.
             </p>
             <div className="flex items-center space-x-2 text-primary-light">
               <MapPin className="w-5 h-5" />

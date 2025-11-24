@@ -25,6 +25,7 @@ const filesToKeep = [
   'SOLUCION_CREDENCIALES.md',
   'SOLUCION_HOSTINGER.md',
   'RESUMEN_FIX.md',
+  'SEO_SETUP.md',
   'package.json',
   '.gitignore',
   '.env.example',
@@ -70,7 +71,7 @@ function cleanBuildFiles(rootDir) {
     const filePath = path.join(rootDir, file);
     const stat = fs.statSync(filePath);
     
-    // Eliminar archivos compilados conocidos
+    // Eliminar archivos compilados conocidos (pero mantener sitemap.xml y robots.txt)
     if (stat.isFile() && (file === 'index.html' || file === 'vite.svg')) {
       fs.unlinkSync(filePath);
     } else if (stat.isDirectory() && file === 'assets') {

@@ -2,17 +2,27 @@ import { Card } from '../components/ui/Card';
 import { BookingForm } from '../components/forms/BookingForm';
 import { MessageCircle, MapPin, Clock } from 'lucide-react';
 import { WHATSAPP_URL, WHATSAPP_NUMBER, COVERAGE_AREA } from '../utils/constants';
+import { SEO } from '../components/SEO';
 
 export function Contact() {
   return (
-    <main className="py-20">
+    <>
+      <SEO
+        title="Reserva tu Servicio de Limpieza en Madrid - Relucia | Contacto y Reservas"
+        description="Reserva tu servicio de limpieza profesional en Madrid. Formulario rápido y fácil. WhatsApp: +34 647 122 461. Cobertura en todo Madrid. Horario: Lunes a Domingo 8:00-20:00."
+        keywords="reservar limpieza Madrid, contacto limpieza Madrid, WhatsApp limpieza Madrid, reserva limpieza profesional Madrid, formulario limpieza Madrid"
+        canonical="https://www.relucia.es/contacto"
+      />
+      <main className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-text mb-4">
             Reserva tu Servicio
           </h1>
           <p className="text-lg text-text-light max-w-2xl mx-auto">
-            Completa el formulario y nos pondremos en contacto contigo lo antes posible
+            Completa el formulario y nos pondremos en contacto contigo lo antes posible. 
+            También puedes contactarnos directamente por WhatsApp para una respuesta más rápida. 
+            Estamos disponibles de lunes a domingo de 8:00 a 20:00 para atenderte.
           </p>
         </div>
 
@@ -55,6 +65,7 @@ export function Contact() {
         </div>
       </div>
     </main>
+    </>
   );
 }
 

@@ -33,7 +33,8 @@ export function WhyChooseUs() {
             ¿Por qué elegir Relucia?
           </h2>
           <p className="text-lg text-text-light max-w-2xl mx-auto">
-            Somos más que un servicio de limpieza. Somos tu aliado para mantener tu espacio reluciente.
+            Somos más que un servicio de limpieza en Madrid. Somos tu aliado para mantener tu espacio reluciente. 
+            Profesionales certificados, materiales incluidos y resultados garantizados.
           </p>
         </div>
 
