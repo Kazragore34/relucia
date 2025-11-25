@@ -20,7 +20,7 @@ export function SEO({
   description = defaultDescription,
   keywords = defaultKeywords,
   canonical,
-  ogImage = `${baseUrl}/og-image.jpg`,
+  ogImage = `${baseUrl}/logo-con-limpieza.svg`,
   ogType = 'website',
 }: SEOProps) {
   const location = useLocation();

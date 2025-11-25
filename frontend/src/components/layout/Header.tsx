@@ -22,9 +22,11 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="text-3xl font-heading font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
-              Relucia
-            </div>
+            <img 
+              src="/logo-con-limpieza.svg" 
+              alt="Relucia - Limpieza Profesional" 
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
