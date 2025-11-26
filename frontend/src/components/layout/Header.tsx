@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '../ui/Button';
+import { Logo } from '../ui/Logo';
 import { WHATSAPP_URL } from '../../utils/constants';
 
 export function Header() {
@@ -21,14 +22,7 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img 
-              src="/logo-con-limpieza.svg" 
-              alt="Relucia - Limpieza Profesional" 
-              className="h-10 md:h-14 w-auto"
-              style={{ maxWidth: '250px' }}
-            />
-          </Link>
+          <Logo variant="full" />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
