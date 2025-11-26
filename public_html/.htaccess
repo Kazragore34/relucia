@@ -1,25 +1,19 @@
+# Habilitar RewriteEngine
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
   
-  # Permitir acceso a archivos estáticos
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteRule ^ - [L]
+  # Si el archivo existe, servirlo directamente
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
   
-  # Redirigir todo lo demás a index.html
+  # Si no existe, redirigir a index.html (SPA)
   RewriteRule ^ index.html [L]
 </IfModule>
 
-# Configuración de seguridad
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql)$">
-  Order Allow,Deny
-  Deny from all
-</FilesMatch>
-
-# Permitir acceso a archivos estáticos
-<FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$">
-  Order Allow,Deny
-  Allow from all
-</FilesMatch>
-
+# Configurar tipos MIME
+<IfModule mod_mime.c>
+  AddType image/svg+xml .svg
+  AddType application/javascript .js
+  AddType text/css .css
+</IfModule>
