@@ -1,0 +1,28 @@
+{
+  "name": "Relucia - Servicios de Limpieza Profesional en Madrid",
+  "short_name": "Relucia",
+  "description": "Servicios profesionales de limpieza por horas en Madrid. Limpieza de casas, post-obra, oficinas y más.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4A90E2",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo-relucia.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo-con-limpieza.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "lifestyle"],
+  "lang": "es-ES",
+  "dir": "ltr"
+}
+
