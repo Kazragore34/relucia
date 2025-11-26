@@ -72,7 +72,7 @@ function cleanBuildFiles(rootDir) {
     const stat = fs.statSync(filePath);
     
     // Eliminar archivos compilados conocidos (pero mantener sitemap.xml, robots.txt y archivos de verificación)
-    if (stat.isFile() && (file === 'index.html' || file === 'vite.svg')) {
+    if (stat.isFile() && file === 'index.html') {
       fs.unlinkSync(filePath);
     } else if (stat.isFile() && file.startsWith('google') && file.endsWith('.html')) {
       // Mantener archivos de verificación de Google Search Console
