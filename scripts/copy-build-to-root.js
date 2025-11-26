@@ -117,6 +117,33 @@ cleanBuildFiles(rootDir);
 // Copiar archivos del build a la raíz del repo
 copyRecursiveSync(sourceDir, rootDir);
 
+// Copiar logos desde frontend/public a la raíz
+const publicDir = path.join(__dirname, '..', 'frontend', 'public');
+const logoFiles = ['logo-relucia.svg', 'logo-relucia-2.svg', 'logo-con-limpieza.svg'];
+logoFiles.forEach(logoFile => {
+  const srcLogo = path.join(publicDir, logoFile);
+  const destLogo = path.join(rootDir, logoFile);
+  if (fs.existsSync(srcLogo)) {
+    fs.copyFileSync(srcLogo, destLogo);
+    console.log(`✅ Copiado ${logoFile} a la raíz`);
+  }
+});
+
+// También copiar desde la raíz si existen (por si están ahí)
+const rootLogos = ['Logo-con-limpieza.svg', 'logo-relucia-2.svg', 'logo-relucia.svg'];
+rootLogos.forEach(logoFile => {
+  const srcLogo = path.join(rootDir, logoFile);
+  if (fs.existsSync(srcLogo)) {
+    // Normalizar nombres: Logo-con-limpieza.svg -> logo-con-limpieza.svg
+    const normalizedName = logoFile.toLowerCase().replace('logo-con-limpieza', 'logo-con-limpieza');
+    const destLogo = path.join(rootDir, normalizedName);
+    if (srcLogo !== destLogo) {
+      fs.copyFileSync(srcLogo, destLogo);
+      console.log(`✅ Normalizado ${logoFile} -> ${normalizedName}`);
+    }
+  }
+});
+
 // Crear/actualizar .htaccess en la raíz
 fs.writeFileSync(path.join(rootDir, '.htaccess'), htaccessContent);
 
