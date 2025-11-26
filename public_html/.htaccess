@@ -1,9 +1,25 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+  
+  # Permitir acceso a archivos estáticos
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  
+  # Redirigir todo lo demás a index.html
+  RewriteRule ^ index.html [L]
 </IfModule>
+
+# Configuración de seguridad
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Permitir acceso a archivos estáticos
+<FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$">
+  Order Allow,Deny
+  Allow from all
+</FilesMatch>
 
