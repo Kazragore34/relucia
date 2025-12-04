@@ -9,28 +9,28 @@ export const SERVICES: Service[] = [
     name: 'Limpieza de Casa',
     description: 'Limpieza profunda y detallada de tu hogar. Incluye todas las habitaciones, baños, cocina y zonas comunes.',
     icon: 'Home',
-    price: 'Desde 15€/hora',
+    price: '10€/hora',
   },
   {
     id: 'limpieza-obra',
     name: 'Limpieza Post-Obra',
     description: 'Limpieza especializada después de obras. Eliminamos polvo, residuos de construcción y dejamos tu espacio reluciente.',
     icon: 'Hammer',
-    price: 'Desde 20€/hora',
+    price: '10€/hora',
   },
   {
     id: 'limpieza-profunda',
     name: 'Limpieza Profunda',
     description: 'Limpieza exhaustiva que incluye zonas de difícil acceso, cristales, muebles y electrodomésticos.',
     icon: 'Sparkles',
-    price: 'Desde 18€/hora',
+    price: '10€/hora',
   },
   {
     id: 'limpieza-oficina',
     name: 'Limpieza de Oficinas',
     description: 'Servicio de limpieza para espacios de trabajo. Mantenemos tu oficina limpia y profesional.',
     icon: 'Briefcase',
-    price: 'Desde 16€/hora',
+    price: '10€/hora',
   },
 ];
 

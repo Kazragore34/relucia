@@ -10,7 +10,7 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     question: '¿Cuánto cuesta el servicio de limpieza?',
-    answer: 'Nuestros precios comienzan desde 15€/hora para limpieza de casas, 20€/hora para limpieza post-obra, y varían según el tipo de servicio. Ofrecemos presupuestos personalizados sin compromiso. Contacta con nosotros por WhatsApp para obtener un precio exacto según tus necesidades.',
+    answer: 'Todos nuestros servicios tienen un precio fijo de 10€/hora. No importa el tipo de servicio: limpieza de casas, limpieza post-obra, limpieza profunda u oficinas, todos tienen el mismo precio transparente. Contacta con nosotros por WhatsApp para reservar tu servicio.',
   },
   {
     question: '¿Qué incluye el servicio de limpieza?',
@@ -30,7 +30,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: '¿Ofrecen limpieza de oficinas?',
-    answer: 'Sí, ofrecemos servicios de limpieza para oficinas y espacios comerciales. Adaptamos nuestros servicios a tus horarios y necesidades específicas. Precios desde 16€/hora. Contacta para más detalles.',
+    answer: 'Sí, ofrecemos servicios de limpieza para oficinas y espacios comerciales. Adaptamos nuestros servicios a tus horarios y necesidades específicas. Precio fijo de 10€/hora. Contacta para más detalles.',
   },
   {
     question: '¿Qué diferencia a Relucia de otras empresas de limpieza?',
