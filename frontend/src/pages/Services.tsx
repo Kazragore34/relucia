@@ -16,7 +16,7 @@ export function ServicesPage() {
     <>
       <SEO
         title="Limpieza Madrid y Aranjuez | Limpieza de Casas, Obras y Post-Obra"
-        description="Descubre todos nuestros servicios de limpieza profesional en Madrid y Aranjuez: limpieza de casas, limpieza de obras, limpieza post-obra, limpieza profunda y oficinas. Precio fijo de 10€/hora para todos los servicios. Materiales incluidos. Profesionales certificados."
+        description="Descubre todos nuestros servicios de limpieza profesional en Madrid y Aranjuez: limpieza de casas, limpieza de obras, limpieza post-obra, limpieza profunda y oficinas. Precio desde 10€/hora para todos los servicios. Materiales incluidos. Profesionales certificados."
         keywords="limpieza Madrid, limpieza Aranjuez, limpieza por horas, limpieza de casas Madrid, limpieza de casas Aranjuez, limpieza obras Madrid, limpieza post obra Madrid, limpieza post obra Aranjuez, limpieza profunda Madrid, limpieza oficinas Madrid, precios limpieza Madrid, empresa limpieza profesional Madrid, limpieza Comunidad Madrid"
         canonical="https://www.relucia.es/servicios"
       />
